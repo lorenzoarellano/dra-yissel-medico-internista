@@ -35,10 +35,22 @@ const sources = [
                 "loc": "/",
                 "images": [
                     {
-                        "loc": "https://internistaenaguascalientes.com/hero-placeholder.webp"
+                        "loc": "https://internistaenaguascalientes.com/liver.webp"
                     },
                     {
-                        "loc": "https://internistaenaguascalientes.com/perfil-placeholder.webp"
+                        "loc": "https://internistaenaguascalientes.com/pulmon.webp"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/kidneys.webp"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/hero.webp"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/acerca-de.webp"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/top-footer.webp"
                     }
                 ]
             }

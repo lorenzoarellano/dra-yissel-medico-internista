@@ -2,7 +2,8 @@
 import type { DefineComponent, SlotsType } from 'vue'
 type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refresh: () => Promise<void>}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, SlotsType<{ fallback: { error: unknown } }>>
 interface _GlobalComponents {
-      'FloatingWhatsApp': typeof import("../components/FloatingWhatsApp.vue")['default']
+      'CookieBanner': typeof import("../components/CookieBanner.vue")['default']
+    'FloatingWhatsApp': typeof import("../components/FloatingWhatsApp.vue")['default']
     'Footer': typeof import("../components/Footer.vue")['default']
     'Navbar': typeof import("../components/Navbar.vue")['default']
     'SectionsAbout': typeof import("../components/sections/About.vue")['default']
@@ -10,6 +11,7 @@ interface _GlobalComponents {
     'SectionsFaq': typeof import("../components/sections/Faq.vue")['default']
     'SectionsHero': typeof import("../components/sections/Hero.vue")['default']
     'SectionsServices': typeof import("../components/sections/Services.vue")['default']
+    'SectionsTestimonials': typeof import("../components/sections/Testimonials.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -36,7 +38,8 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-      'LazyFloatingWhatsApp': typeof import("../components/FloatingWhatsApp.vue")['default']
+      'LazyCookieBanner': typeof import("../components/CookieBanner.vue")['default']
+    'LazyFloatingWhatsApp': typeof import("../components/FloatingWhatsApp.vue")['default']
     'LazyFooter': typeof import("../components/Footer.vue")['default']
     'LazyNavbar': typeof import("../components/Navbar.vue")['default']
     'LazySectionsAbout': typeof import("../components/sections/About.vue")['default']
@@ -44,6 +47,7 @@ interface _GlobalComponents {
     'LazySectionsFaq': typeof import("../components/sections/Faq.vue")['default']
     'LazySectionsHero': typeof import("../components/sections/Hero.vue")['default']
     'LazySectionsServices': typeof import("../components/sections/Services.vue")['default']
+    'LazySectionsTestimonials': typeof import("../components/sections/Testimonials.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'LazyNuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -76,6 +80,7 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const CookieBanner: typeof import("../components/CookieBanner.vue")['default']
 export const FloatingWhatsApp: typeof import("../components/FloatingWhatsApp.vue")['default']
 export const Footer: typeof import("../components/Footer.vue")['default']
 export const Navbar: typeof import("../components/Navbar.vue")['default']
@@ -84,6 +89,7 @@ export const SectionsContact: typeof import("../components/sections/Contact.vue"
 export const SectionsFaq: typeof import("../components/sections/Faq.vue")['default']
 export const SectionsHero: typeof import("../components/sections/Hero.vue")['default']
 export const SectionsServices: typeof import("../components/sections/Services.vue")['default']
+export const SectionsTestimonials: typeof import("../components/sections/Testimonials.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
 export const NuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -110,6 +116,7 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyCookieBanner: typeof import("../components/CookieBanner.vue")['default']
 export const LazyFloatingWhatsApp: typeof import("../components/FloatingWhatsApp.vue")['default']
 export const LazyFooter: typeof import("../components/Footer.vue")['default']
 export const LazyNavbar: typeof import("../components/Navbar.vue")['default']
@@ -118,6 +125,7 @@ export const LazySectionsContact: typeof import("../components/sections/Contact.
 export const LazySectionsFaq: typeof import("../components/sections/Faq.vue")['default']
 export const LazySectionsHero: typeof import("../components/sections/Hero.vue")['default']
 export const LazySectionsServices: typeof import("../components/sections/Services.vue")['default']
+export const LazySectionsTestimonials: typeof import("../components/sections/Testimonials.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
 export const LazyNuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']

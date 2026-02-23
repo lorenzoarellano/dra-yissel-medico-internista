@@ -1,33 +1,35 @@
-import { inject, unref, hasInjectionContext, getCurrentInstance, version, defineComponent, ref, provide, createElementBlock, h, computed, shallowReactive, watch, Suspense, nextTick, Fragment, Transition, createApp, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, toRef, defineAsyncComponent, mergeProps, getCurrentScope, withCtx, shallowRef, isReadonly, useSSRContext, isRef, isReactive, toRaw, isShallow } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue/index.mjs';
-import { $fetch } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ofetch/dist/node.mjs';
-import { e as baseURL } from '../nitro/nitro.mjs';
-import { createHooks } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/hookable/dist/index.mjs';
-import { getContext } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unctx/dist/index.mjs';
-import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/h3/dist/index.mjs';
-import { getActiveHead, CapoPlugin } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin, composableNames } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/@unhead/shared/dist/index.mjs';
-import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue-router/vue-router.node.mjs';
-import { toRouteMatcher, createRouter as createRouter$1 } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/radix3/dist/index.mjs';
-import { defu } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/defu/dist/defu.mjs';
-import { withQuery, hasProtocol, isScriptProtocol, joinURL } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ufo/dist/index.mjs';
-import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue/server-renderer/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/destr/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/node-mock-http/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/fs.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/fs-lite.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/lru-cache.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/nitropack/node_modules/ohash/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/klona/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/scule/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/consola/dist/index.mjs';
+import { unref, inject, hasInjectionContext, getCurrentInstance, version, defineComponent, ref, provide, createElementBlock, defineAsyncComponent, h, computed, shallowReactive, watch, Suspense, nextTick, Fragment, Transition, createApp, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, toRef, mergeProps, getCurrentScope, withCtx, shallowRef, isReadonly, useSSRContext, isRef, isReactive, toRaw, isShallow } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue/index.mjs';
+import { $fetch as $fetch$1 } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/ofetch/dist/node.mjs';
+import { e as baseURL } from '../_/nitro.mjs';
+import { createHooks } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/hookable/dist/index.mjs';
+import { getContext } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/unctx/dist/index.mjs';
+import { createError as createError$1, sanitizeStatusCode, appendHeader } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/h3/dist/index.mjs';
+import { getActiveHead, CapoPlugin } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin, composableNames } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/@unhead/shared/dist/index.mjs';
+import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue-router/vue-router.node.mjs';
+import { toRouteMatcher, createRouter as createRouter$1 } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/radix3/dist/index.mjs';
+import { defuFn, defu } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/defu/dist/defu.mjs';
+import { hasProtocol, isScriptProtocol, joinURL, withQuery } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/ufo/dist/index.mjs';
+import { klona } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/klona/dist/index.mjs';
+import { _api, disableCache, addAPIProvider } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/@iconify/vue/dist/iconify.mjs';
+import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue/server-renderer/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/destr/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/node-mock-http/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/scule/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/consola/dist/index.mjs';
 import 'node:fs';
 import 'node:url';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/pathe/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ipx/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/pathe/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/@iconify/utils/lib/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/ipx/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/drivers/fs.mjs';
+import 'file:///C:/projects/dra-yissel-medico-internista/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/drivers/fs-lite.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/nitropack/node_modules/ohash/dist/index.mjs';
 
 if (!globalThis.$fetch) {
-  globalThis.$fetch = $fetch.create({
+  globalThis.$fetch = $fetch$1.create({
     baseURL: baseURL()
   });
 }
@@ -35,6 +37,7 @@ const appLayoutTransition = false;
 const appPageTransition = false;
 const appKeepalive = false;
 const nuxtLinkDefaults = { "componentName": "NuxtLink", "prefetch": true, "prefetchOn": { "visibility": true } };
+const asyncDataDefaults = { "value": null, "errorValue": null, "deep": true };
 const appId = "nuxt-app";
 function getNuxtAppCtx(id = appId) {
   return getContext(id, {
@@ -600,7 +603,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-D52p_mEW.mjs').then((m) => m.default || m)
+    component: () => import('./index-DraqqeI6.mjs').then((m) => m.default || m)
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -974,6 +977,204 @@ defineComponent({
     };
   }
 });
+const inlineConfig = {
+  "nuxt": {},
+  "icon": {
+    "provider": "server",
+    "class": "",
+    "aliases": {},
+    "iconifyApiEndpoint": "https://api.iconify.design",
+    "fallbackToApi": true,
+    "cssSelectorPrefix": "i-",
+    "cssWherePseudo": true,
+    "mode": "css",
+    "attrs": {
+      "aria-hidden": true
+    },
+    "collections": [
+      "academicons",
+      "akar-icons",
+      "ant-design",
+      "arcticons",
+      "basil",
+      "bi",
+      "bitcoin-icons",
+      "bpmn",
+      "brandico",
+      "bx",
+      "bxl",
+      "bxs",
+      "bytesize",
+      "carbon",
+      "cbi",
+      "charm",
+      "ci",
+      "cib",
+      "cif",
+      "cil",
+      "circle-flags",
+      "circum",
+      "clarity",
+      "codicon",
+      "covid",
+      "cryptocurrency",
+      "cryptocurrency-color",
+      "dashicons",
+      "devicon",
+      "devicon-plain",
+      "ei",
+      "el",
+      "emojione",
+      "emojione-monotone",
+      "emojione-v1",
+      "entypo",
+      "entypo-social",
+      "eos-icons",
+      "ep",
+      "et",
+      "eva",
+      "f7",
+      "fa",
+      "fa-brands",
+      "fa-regular",
+      "fa-solid",
+      "fa6-brands",
+      "fa6-regular",
+      "fa6-solid",
+      "fad",
+      "fe",
+      "feather",
+      "file-icons",
+      "flag",
+      "flagpack",
+      "flat-color-icons",
+      "flat-ui",
+      "flowbite",
+      "fluent",
+      "fluent-emoji",
+      "fluent-emoji-flat",
+      "fluent-emoji-high-contrast",
+      "fluent-mdl2",
+      "fontelico",
+      "fontisto",
+      "formkit",
+      "foundation",
+      "fxemoji",
+      "gala",
+      "game-icons",
+      "geo",
+      "gg",
+      "gis",
+      "gravity-ui",
+      "gridicons",
+      "grommet-icons",
+      "guidance",
+      "healthicons",
+      "heroicons",
+      "heroicons-outline",
+      "heroicons-solid",
+      "humbleicons",
+      "ic",
+      "icomoon-free",
+      "icon-park",
+      "icon-park-outline",
+      "icon-park-solid",
+      "icon-park-twotone",
+      "iconamoon",
+      "iconoir",
+      "icons8",
+      "il",
+      "ion",
+      "iwwa",
+      "jam",
+      "la",
+      "lets-icons",
+      "line-md",
+      "logos",
+      "ls",
+      "lucide",
+      "mage",
+      "majesticons",
+      "maki",
+      "map",
+      "marketeq",
+      "material-symbols",
+      "material-symbols-light",
+      "mdi",
+      "mdi-light",
+      "medical-icon",
+      "memory",
+      "meteocons",
+      "mi",
+      "mingcute",
+      "mono-icons",
+      "mynaui",
+      "nimbus",
+      "nonicons",
+      "noto",
+      "noto-v1",
+      "octicon",
+      "oi",
+      "ooui",
+      "openmoji",
+      "oui",
+      "pajamas",
+      "pepicons",
+      "pepicons-pencil",
+      "pepicons-pop",
+      "pepicons-print",
+      "ph",
+      "pixelarticons",
+      "prime",
+      "ps",
+      "quill",
+      "radix-icons",
+      "raphael",
+      "ri",
+      "si-glyph",
+      "simple-icons",
+      "simple-line-icons",
+      "skill-icons",
+      "solar",
+      "streamline",
+      "streamline-emojis",
+      "subway",
+      "svg-spinners",
+      "system-uicons",
+      "tabler",
+      "tdesign",
+      "teenyicons",
+      "token",
+      "token-branded",
+      "topcoat",
+      "twemoji",
+      "typcn",
+      "uil",
+      "uim",
+      "uis",
+      "uit",
+      "uiw",
+      "unjs",
+      "vaadin",
+      "vs",
+      "vscode-icons",
+      "websymbol",
+      "whh",
+      "wi",
+      "wpf",
+      "zmdi",
+      "zondicons"
+    ]
+  }
+};
+const __appConfig = /* @__PURE__ */ defuFn(inlineConfig);
+function useAppConfig() {
+  const nuxtApp = useNuxtApp();
+  if (!nuxtApp._appConfig) {
+    nuxtApp._appConfig = klona(__appConfig);
+  }
+  return nuxtApp._appConfig;
+}
 const _0_siteConfig_MwZUzHrRNP = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt-site-config:init",
   enforce: "pre",
@@ -1014,8 +1215,39 @@ const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
     }
   }
 });
+const LazyIcon = defineAsyncComponent(() => import('./index-CPt6RJet.mjs').then((r) => r["default"] || r.default || r));
+const lazyGlobalComponents = [
+  ["Icon", LazyIcon]
+];
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
-  name: "nuxt:global-components"
+  name: "nuxt:global-components",
+  setup(nuxtApp) {
+    for (const [name, component] of lazyGlobalComponents) {
+      nuxtApp.vueApp.component(name, component);
+      nuxtApp.vueApp.component("Lazy" + name, component);
+    }
+  }
+});
+const plugin_uNcnkSEldr = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt-icon",
+  setup() {
+    var _a, _b;
+    const config = /* @__PURE__ */ useRuntimeConfig();
+    const options = useAppConfig().icon;
+    _api.setFetch($fetch.native);
+    disableCache("all");
+    const resources = [];
+    if (options.provider === "server") {
+      const baseURL2 = ((_b = (_a = config.app) == null ? void 0 : _a.baseURL) == null ? void 0 : _b.replace(/\/$/, "")) ?? "";
+      resources.push(baseURL2 + "/api/_nuxt_icon");
+      if (options.fallbackToApi) {
+        resources.push(options.iconifyApiEndpoint);
+      }
+    } else {
+      resources.push(options.iconifyApiEndpoint);
+    }
+    addAPIProvider("", { resources });
+  }
 });
 const robot_meta_server_6Qhe4cPOr2 = /* @__PURE__ */ defineNuxtPlugin({
   setup() {
@@ -1079,11 +1311,12 @@ const plugins = [
   _0_siteConfig_MwZUzHrRNP,
   revive_payload_server_eJ33V7gbc6,
   components_plugin_KR1HBZs4kY,
+  plugin_uNcnkSEldr,
   robot_meta_server_6Qhe4cPOr2,
   prerender_server_LXx1wM9sKF
 ];
 const layouts = {
-  default: () => import('./default-CRrFRyn9.mjs').then((m) => m.default || m)
+  default: () => import('./default-DUii-jo2.mjs').then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1379,8 +1612,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-DyK7CvtL.mjs').then((r) => r.default || r));
-    const _Error = defineAsyncComponent(() => import('./error-500-CIT-KtkQ.mjs').then((r) => r.default || r));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-0sW5O7dn.mjs').then((r) => r.default || r));
+    const _Error = defineAsyncComponent(() => import('./error-500-BrR63sxk.mjs').then((r) => r.default || r));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -1461,5 +1694,5 @@ let entry;
 }
 const entry_default = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, resolveRouteObject as a, useNuxtApp as b, useRuntimeConfig as c, nuxtLinkDefaults as d, entry_default as default, injectHead as i, navigateTo as n, resolveUnrefHeadInput as r, useRouter as u };
+export { _export_sfc as _, useNuxtApp as a, useRuntimeConfig as b, nuxtLinkDefaults as c, asyncDataDefaults as d, entry_default as default, createError as e, useAppConfig as f, resolveUnrefHeadInput as g, injectHead as i, navigateTo as n, resolveRouteObject as r, useRouter as u };
 //# sourceMappingURL=server.mjs.map

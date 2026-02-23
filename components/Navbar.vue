@@ -10,37 +10,93 @@
         <!-- Desktop Menu -->
         <nav class="hidden md:flex space-x-8">
           <a v-for="link in links" :key="link.name" :href="link.href" 
-             class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-secondary transition-colors">
+             class="text-sm font-medium text-slate-700 hover:text-primary transition-colors">
             {{ link.name }}
           </a>
         </nav>
 
         <!-- Actions -->
-        <div class="flex items-center space-x-4">
-          <button @click="toggleTheme" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" aria-label="Cambiar tema">
-            <Icon v-if="isDark" name="lucide:sun" class="w-5 h-5 text-secondary" />
-            <Icon v-else name="lucide:moon" class="w-5 h-5 text-primary" />
-          </button>
-          
-          <a href="tel:4494970240" class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+        <div class="flex items-center space-x-3">
+          <!-- Social icons -->
+          <a href="https://www.instagram.com/dra.mendozainternista?utm_source=qr&igsh=MTV2eTBodmluc280Mg%3D%3D"
+            target="_blank" rel="noopener noreferrer"
+            class="hidden sm:flex items-center justify-center w-8 h-8 rounded-full text-slate-500 hover:text-[#E1306C] transition-colors hover:bg-pink-50"
+            aria-label="Instagram">
+            <Icon name="lucide:instagram" class="w-4 h-4" />
+          </a>
+
+          <a href="tel:4494970240" class="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-full shadow-md text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" style="background: linear-gradient(135deg, #132f57 0%, #1a6fa0 55%, #2ebd85 100%);">
             Agendar Cita
           </a>
           
-          <!-- Mobile Menu Button Placeholder -->
-          <button class="md:hidden p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
-            <span class="sr-only">Abrir menú</span>
-            <Icon name="lucide:menu" class="h-6 w-6" aria-hidden="true" />
+          <!-- Mobile Menu Button -->
+          <button
+            @click="isOpen = !isOpen"
+            class="md:hidden p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+            :aria-expanded="isOpen"
+            aria-controls="mobile-menu"
+          >
+            <span class="sr-only">{{ isOpen ? 'Cerrar menú' : 'Abrir menú' }}</span>
+            <Icon :name="isOpen ? 'lucide:x' : 'lucide:menu'" class="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
       </div>
+
+      <!-- Mobile Menu Drawer -->
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100 translate-y-0"
+        leave-to-class="opacity-0 -translate-y-2"
+      >
+        <div
+          v-if="isOpen"
+          id="mobile-menu"
+          class="md:hidden mt-2 glass-navbar rounded-2xl px-6 py-5 pointer-events-auto"
+        >
+          <nav class="flex flex-col space-y-1">
+            <a
+              v-for="link in links"
+              :key="link.name"
+              :href="link.href"
+              @click="isOpen = false"
+              class="px-3 py-3 rounded-xl text-sm font-medium text-slate-700 hover:text-primary hover:bg-white/60 transition-colors"
+            >
+              {{ link.name }}
+            </a>
+          </nav>
+          <div class="mt-4 pt-4 border-t border-slate-200 flex flex-col gap-3">
+            <a
+              href="tel:4494970240"
+              class="inline-flex items-center justify-center px-5 py-3 rounded-full shadow-md text-sm font-bold text-white transition-all focus:outline-none"
+              style="background: linear-gradient(135deg, #132f57 0%, #1a6fa0 55%, #2ebd85 100%);"
+              @click="isOpen = false"
+            >
+              <Icon name="lucide:calendar" class="w-4 h-4 mr-2" />
+              Agendar Cita
+            </a>
+            <a
+              href="https://www.instagram.com/dra.mendozainternista?utm_source=qr&igsh=MTV2eTBodmluc280Mg%3D%3D"
+              target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-slate-600 bg-white/60 border border-slate-200 hover:text-[#E1306C] transition-colors"
+              @click="isOpen = false"
+            >
+              <Icon name="lucide:instagram" class="w-4 h-4" />
+              Instagram
+            </a>
+          </div>
+        </div>
+      </Transition>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
-const isDark = ref(false)
+const isOpen = ref(false)
 
 const links = [
   { name: 'Inicio', href: '#inicio' },
@@ -49,26 +105,4 @@ const links = [
   { name: 'Preguntas', href: '#preguntas' },
   { name: 'Contacto', href: '#contacto' },
 ]
-
-onMounted(() => {
-  // Check theme on mount
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // We default to light if they didn't specify, but here we read system pref or local storage
-    if(localStorage.getItem('theme') === 'dark') {
-      isDark.value = true
-      document.documentElement.classList.add('dark')
-    }
-  }
-})
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  }
-}
 </script>

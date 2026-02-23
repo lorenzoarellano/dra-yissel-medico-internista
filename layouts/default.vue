@@ -1,14 +1,15 @@
 <template>
-  <div class="min-h-screen flex flex-col selection:bg-primary/20 selection:text-primary dark:selection:bg-secondary/20 dark:selection:text-secondary">
+  <div class="min-h-screen flex flex-col selection:bg-primary/20 selection:text-primary">
     <Navbar />
     
-    <main class="flex-grow pt-20">
+    <main class="flex-grow">
       <slot />
     </main>
 
     <Footer />
     
     <FloatingWhatsApp />
+    <CookieBanner />
   </div>
 </template>
 

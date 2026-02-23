@@ -1,32 +1,32 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { getQuery, createError, appendResponseHeader, getResponseStatusText, getResponseStatus } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/h3/dist/index.mjs';
-import { stringify, uneval } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/devalue/index.js';
-import { joinURL, withoutTrailingSlash } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/@unhead/ssr/dist/index.mjs';
-import { d as defineRenderHandler, b as buildAssetsURL, p as publicAssetsURL, u as useStorage, g as getRouteRules, a as useRuntimeConfig, c as useNitroApp } from '../nitro/nitro.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unhead/dist/index.mjs';
-import { unref, version } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/vue/index.mjs';
-import { defineHeadPlugin } from 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/@unhead/shared/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/destr/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/hookable/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ofetch/dist/node.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/node-mock-http/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/fs.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/fs-lite.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unstorage/drivers/lru-cache.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/nitropack/node_modules/ohash/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/klona/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/defu/dist/defu.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/scule/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/unctx/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/radix3/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/consola/dist/index.mjs';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { getQuery, createError, appendResponseHeader, getResponseStatusText, getResponseStatus } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/h3/dist/index.mjs';
+import { stringify, uneval } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/devalue/index.js';
+import { joinURL, withoutTrailingSlash } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/@unhead/ssr/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/unhead/dist/index.mjs';
+import { d as defineRenderHandler, b as buildAssetsURL, p as publicAssetsURL, a as useStorage, g as getRouteRules, c as useRuntimeConfig, u as useNitroApp } from './nitro.mjs';
+import { unref, version } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/vue/index.mjs';
+import { defineHeadPlugin } from 'file://C:/projects/dra-yissel-medico-internista/node_modules/@unhead/shared/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/destr/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/hookable/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/ofetch/dist/node.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/node-mock-http/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/klona/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/defu/dist/defu.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/scule/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/radix3/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/consola/dist/index.mjs';
 import 'node:fs';
 import 'node:url';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/pathe/dist/index.mjs';
-import 'file:///Users/lorenzoarellano/developer/dra-yissel/node_modules/ipx/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/pathe/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/@iconify/utils/lib/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/ipx/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/dist/index.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/drivers/fs.mjs';
+import 'file:///C:/projects/dra-yissel-medico-internista/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/unstorage/drivers/fs-lite.mjs';
+import 'file://C:/projects/dra-yissel-medico-internista/node_modules/nitropack/node_modules/ohash/dist/index.mjs';
 
 const Vue3 = version[0] === "3";
 
@@ -91,7 +91,7 @@ const unheadPlugins = true ? [CapoPlugin({ track: true })] : [];
 
 const renderSSRHeadOptions = {"omitLineBreaks":false};
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Especializada en el abordaje y tratamiento de las enfermedades crónicas del adulto con información actualizada, integral y con calidad humana."},{"name":"format-detection","content":"telephone=no"},{"name":"theme-color","content":"#ffffff"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"es-MX"},"title":"Dra. Yissel Mendoza | Medicina Interna en Aguascalientes"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Dra. Yissel Mendoza González — Médico Internista certificada en Aguascalientes. Tratamiento especializado de diabetes, hipertensión arterial, enfermedades crónicas, valoración preoperatoria y segunda opinión médica. Hospital MAC SUR, Aguascalientes, Ags. Tel: 449-497-02-40."},{"name":"format-detection","content":"telephone=no"},{"name":"theme-color","content":"#ffffff"},{"property":"og:locale","content":"es_MX"},{"property":"og:site_name","content":"Dra. Yissel Mendoza — Médico Internista"},{"name":"robots","content":"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}],"link":[{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"preconnect","href":"https://www.googletagmanager.com"},{"rel":"canonical","href":"https://internistaenaguascalientes.com"},{"rel":"preload","as":"image","href":"/hero.webp"},{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"icon","type":"image/png","sizes":"32x32","href":"/favicon.png"},{"rel":"icon","type":"image/png","sizes":"16x16","href":"/favicon.png"},{"rel":"apple-touch-icon","sizes":"180x180","href":"/favicon.png"}],"style":[],"script":[{"src":"https://www.googletagmanager.com/gtag/js?id=G-CHW9GM0H0Z","async":true},{"innerHTML":"window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-CHW9GM0H0Z');"}],"noscript":[],"htmlAttrs":{"lang":"es-MX"},"title":"Dra. Yissel Mendoza | Médico Internista en Aguascalientes | Medicina Interna"};
 
 const appRootTag = "div";
 
