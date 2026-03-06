@@ -103,7 +103,7 @@
         <!-- Image Container -->
         <div class="hero-image opacity-0 relative flex items-end justify-center self-end">
           <div class="relative z-10 w-full overflow-hidden group">
-            <img src="/hero.webp" alt="Dra. Yissel Mendoza" class="w-full h-auto object-contain object-bottom transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <img src="/hero.webp" alt="Dra. Yissel Mendoza — Médico Internista en Aguascalientes" class="w-full h-auto object-contain object-bottom transition-transform duration-700 group-hover:scale-105" loading="eager" fetchpriority="high" width="600" height="720" />
             
             <!-- Float Badges -->
             <div class="absolute bottom-8 -left-6 glass-card px-6 py-4 flex items-center gap-4 animate-float">

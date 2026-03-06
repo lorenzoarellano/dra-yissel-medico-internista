@@ -1,61 +1,17 @@
 {
-  "_CnZuF_MY.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "CnZuF_MY.js",
-    "name": "nuxt-link",
-    "imports": [
-      "node_modules/nuxt/dist/app/entry.js"
-    ]
-  },
-  "_DU29Nmsu.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "DU29Nmsu.js",
-    "name": "virtual_public",
-    "imports": [
-      "node_modules/nuxt/dist/app/entry.js"
-    ]
-  },
-  "_MMG3ssMX.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "MMG3ssMX.js",
-    "name": "vue.-sixQ7xP",
-    "imports": [
-      "node_modules/nuxt/dist/app/entry.js"
-    ]
-  },
   "layouts/default.vue": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "BgHd1QdV.js",
+    "file": "Bw0filQb.js",
     "name": "default",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_CnZuF_MY.js",
-      "node_modules/nuxt-icon/dist/runtime/components/index.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_DU29Nmsu.js"
-    ],
-    "assets": [
-      "logo.DjfCBo3g.webp"
+      "node_modules/nuxt-icon/dist/runtime/components/index.js"
     ]
-  },
-  "logo.DjfCBo3g.webp": {
-    "file": "logo.DjfCBo3g.webp",
-    "resourceType": "image",
-    "prefetch": true,
-    "mimeType": "image/webp"
   },
   "logo.webp": {
     "resourceType": "image",
@@ -339,7 +295,7 @@
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "DW12wIWM.js",
+    "file": "Ctfzj6Cw.js",
     "name": "index",
     "src": "node_modules/nuxt-icon/dist/runtime/components/index.js",
     "isDynamicEntry": true,
@@ -347,80 +303,42 @@
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "node_modules/nuxt/dist/app/components/error-404.vue": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "oKAsWFkW.js",
-    "name": "error-404",
-    "src": "node_modules/nuxt/dist/app/components/error-404.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "_CnZuF_MY.js",
-      "_MMG3ssMX.js",
-      "node_modules/nuxt/dist/app/entry.js"
-    ],
-    "css": []
-  },
-  "error-404.B1D4twUQ.css": {
-    "file": "error-404.B1D4twUQ.css",
-    "resourceType": "style",
-    "prefetch": true,
-    "preload": true
-  },
-  "node_modules/nuxt/dist/app/components/error-500.vue": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "ChoxYuKf.js",
-    "name": "error-500",
-    "src": "node_modules/nuxt/dist/app/components/error-500.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "_MMG3ssMX.js",
-      "node_modules/nuxt/dist/app/entry.js"
-    ],
-    "css": []
-  },
-  "error-500.DXdmPJau.css": {
-    "file": "error-500.DXdmPJau.css",
-    "resourceType": "style",
-    "prefetch": true,
-    "preload": true
-  },
   "node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "DZMnTh0G.js",
+    "file": "CQed9lJ9.js",
     "name": "entry",
     "src": "node_modules/nuxt/dist/app/entry.js",
     "isEntry": true,
     "dynamicImports": [
       "node_modules/nuxt-icon/dist/runtime/components/index.js",
-      "layouts/default.vue",
-      "node_modules/nuxt/dist/app/components/error-404.vue",
-      "node_modules/nuxt/dist/app/components/error-500.vue"
+      "layouts/default.vue"
+    ],
+    "assets": [
+      "logo.DjfCBo3g.webp"
     ],
     "_globalCSS": true
+  },
+  "logo.DjfCBo3g.webp": {
+    "file": "logo.DjfCBo3g.webp",
+    "resourceType": "image",
+    "prefetch": true,
+    "mimeType": "image/webp"
   },
   "pages/index.vue": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "BbskAudv.js",
+    "file": "BHcEVYGS.js",
     "name": "index",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt-icon/dist/runtime/components/index.js",
-      "_DU29Nmsu.js",
-      "node_modules/nuxt/dist/app/entry.js",
-      "_MMG3ssMX.js"
+      "node_modules/nuxt/dist/app/entry.js"
     ]
   }
 }

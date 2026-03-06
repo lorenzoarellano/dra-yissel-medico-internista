@@ -82,6 +82,12 @@
                 Aviso de Cookies
               </button>
             </li>
+            <li>
+              <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 hover:text-primary transition-colors inline-flex items-center gap-1.5">
+                <Icon name="lucide:map" class="w-3.5 h-3.5" />
+                Mapa del sitio
+              </a>
+            </li>
           </ul>
         </div>
       </div>

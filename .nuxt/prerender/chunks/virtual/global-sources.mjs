@@ -4,7 +4,33 @@ const sources = [
             "name": "sitemap:urls",
             "description": "Set with the `sitemap.urls` config."
         },
-        "urls": [],
+        "urls": [
+            {
+                "loc": "/",
+                "priority": 1,
+                "changefreq": "weekly",
+                "lastmod": "2026-03-06T16:26:09.496Z",
+                "images": [
+                    {
+                        "loc": "https://internistaenaguascalientes.com/hero.webp",
+                        "title": "Dra. Yissel Mendoza — Médico Internista en Aguascalientes",
+                        "caption": "Dra. Rosalba Yissel Mendoza González, Especialista en Medicina Interna"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/acerca-de.webp",
+                        "title": "Acerca de la Dra. Yissel Mendoza, Internista en Aguascalientes"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/logo.webp",
+                        "title": "Logo Dra. Yissel Mendoza Médico Internista Aguascalientes"
+                    },
+                    {
+                        "loc": "https://internistaenaguascalientes.com/social-share-cover.jpg",
+                        "title": "Dra. Yissel Mendoza — Consulta de Medicina Interna Aguascalientes"
+                    }
+                ]
+            }
+        ],
         "sourceType": "user"
     },
     {
@@ -51,6 +77,16 @@ const sources = [
                     },
                     {
                         "loc": "https://internistaenaguascalientes.com/top-footer.webp"
+                    }
+                ],
+                "alternatives": [
+                    {
+                        "hreflang": "es-MX",
+                        "href": "/"
+                    },
+                    {
+                        "hreflang": "x-default",
+                        "href": "/"
                     }
                 ]
             }

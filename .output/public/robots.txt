@@ -1,6 +1,6 @@
 # START nuxt-robots (indexable)
 User-agent: *
-Disallow: 
+Allow: /
 
 Sitemap: https://internistaenaguascalientes.com/sitemap.xml
 # END nuxt-robots

@@ -32,7 +32,7 @@
             <Icon :name="service.icon" class="w-8 h-8 text-primary" />
           </div>
           <h3 class="text-2xl font-bold text-slate-800 mb-4">{{ service.title }}</h3>
-          <p class="text-slate-600 leading-relaxed" v-html="service.description"></p>
+          <p class="text-slate-600 leading-relaxed text-justify" v-html="service.description"></p>
         </div>
       </div>
 
@@ -52,7 +52,7 @@ const services = [
   {
     icon: 'lucide:heart-pulse',
     title: 'Trastornos endocrinológicos y cardiovasculares',
-    description: 'Abordaje experto de <strong>dislipidemias</strong>, <strong>hipotiroidismo e hipertiroidismo</strong>, insufficiency suprarrenal, arritmias, insuficiencia cardiaca y patologías hematológicas, con protocolos clínicos basados en evidencia.'
+    description: 'Abordaje experto de <strong>dislipidemias</strong>, <strong>hipotiroidismo e hipertiroidismo</strong>, insuficiencia suprarrenal, arritmias, insuficiencia cardiaca y patologías hematológicas, con protocolos clínicos basados en evidencia.'
   },
   {
     icon: 'lucide:shield-plus',

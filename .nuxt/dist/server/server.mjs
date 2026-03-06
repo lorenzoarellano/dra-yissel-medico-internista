@@ -1,6 +1,6 @@
-import { hasInjectionContext, getCurrentInstance, shallowReactive, reactive, effectScope, getCurrentScope, inject, toRef, unref, version, h, shallowRef, isReadonly, isRef, defineComponent, ref, provide, createElementBlock, isReactive, toRaw, isShallow, defineAsyncComponent, computed, Suspense, nextTick, mergeProps, Transition, watch, Fragment, withCtx, createVNode, useSSRContext, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
+import { hasInjectionContext, getCurrentInstance, shallowReactive, reactive, effectScope, getCurrentScope, inject, toRef, unref, version, ref, watchEffect, watch, h, shallowRef, isReadonly, isRef, defineComponent, provide, createElementBlock, resolveComponent, computed, isReactive, toRaw, isShallow, defineAsyncComponent, Suspense, nextTick, mergeProps, Transition, Fragment, withCtx, createVNode, useSSRContext, openBlock, createBlock, createTextVNode, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
 import { $fetch as $fetch$1 } from "ofetch";
-import { baseURL } from "#internal/nuxt/paths";
+import { baseURL, publicAssetsURL } from "#internal/nuxt/paths";
 import { createHooks } from "hookable";
 import { getContext } from "unctx";
 import { sanitizeStatusCode, createError as createError$1, appendHeader } from "h3";
@@ -9,10 +9,10 @@ import { defineHeadPlugin, composableNames } from "@unhead/shared";
 import { START_LOCATION, createMemoryHistory, createRouter as createRouter$1, useRoute as useRoute$1, RouterView } from "vue-router";
 import { toRouteMatcher, createRouter } from "radix3";
 import { defu, defuFn } from "defu";
-import { hasProtocol, joinURL, withQuery, isScriptProtocol } from "ufo";
+import { hasProtocol, joinURL, withQuery, isScriptProtocol, parseQuery, withTrailingSlash, withoutTrailingSlash } from "ufo";
 import { klona } from "klona";
 import { _api, disableCache, addAPIProvider } from "@iconify/vue";
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderList, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch$1.create({
     baseURL: baseURL()
@@ -415,6 +415,27 @@ function injectHead() {
     console.warn("Unhead is missing Vue context, falling back to shared context. This may have unexpected results.");
   return head || getActiveHead();
 }
+function useHead(input, options = {}) {
+  const head = options.head || injectHead();
+  if (head) {
+    if (!head.ssr)
+      return clientUseHead(head, input, options);
+    return head.push(input, options);
+  }
+}
+function clientUseHead(head, input, options = {}) {
+  const deactivated = ref(false);
+  const resolvedInput = ref({});
+  watchEffect(() => {
+    resolvedInput.value = deactivated.value ? {} : resolveUnrefHeadInput(input);
+  });
+  const entry2 = head.push(resolvedInput.value, options);
+  watch(resolvedInput, (e) => {
+    entry2.patch(e);
+  });
+  getCurrentInstance();
+  return entry2;
+}
 const coreComposableNames = [
   "injectHead"
 ];
@@ -588,7 +609,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import("./_nuxt/index-DraqqeI6.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-BcZy7BJH.js").then((m) => m.default || m)
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -937,6 +958,11 @@ function useState(...args) {
   }
   return state;
 }
+async function preloadRouteComponents(to, router = useRouter()) {
+  {
+    return;
+  }
+}
 function definePayloadReducer(name, reduce) {
   {
     useNuxtApp().ssrContext._payloadReducers[name] = reduce;
@@ -965,6 +991,292 @@ defineComponent({
     };
   }
 });
+const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
+// @__NO_SIDE_EFFECTS__
+function defineNuxtLink(options) {
+  const componentName = options.componentName || "NuxtLink";
+  function resolveTrailingSlashBehavior(to, resolve) {
+    if (!to || options.trailingSlash !== "append" && options.trailingSlash !== "remove") {
+      return to;
+    }
+    if (typeof to === "string") {
+      return applyTrailingSlashBehavior(to, options.trailingSlash);
+    }
+    const path = "path" in to && to.path !== void 0 ? to.path : resolve(to).path;
+    const resolvedPath = {
+      ...to,
+      name: void 0,
+      // named routes would otherwise always override trailing slash behavior
+      path: applyTrailingSlashBehavior(path, options.trailingSlash)
+    };
+    return resolvedPath;
+  }
+  function useNuxtLink(props) {
+    const router = useRouter();
+    const config = /* @__PURE__ */ useRuntimeConfig();
+    const hasTarget = computed(() => !!props.target && props.target !== "_self");
+    const isAbsoluteUrl = computed(() => {
+      const path = props.to || props.href || "";
+      return typeof path === "string" && hasProtocol(path, { acceptRelative: true });
+    });
+    const builtinRouterLink = resolveComponent("RouterLink");
+    const useBuiltinLink = builtinRouterLink && typeof builtinRouterLink !== "string" ? builtinRouterLink.useLink : void 0;
+    const isExternal = computed(() => {
+      if (props.external) {
+        return true;
+      }
+      const path = props.to || props.href || "";
+      if (typeof path === "object") {
+        return false;
+      }
+      return path === "" || isAbsoluteUrl.value;
+    });
+    const to = computed(() => {
+      const path = props.to || props.href || "";
+      if (isExternal.value) {
+        return path;
+      }
+      return resolveTrailingSlashBehavior(path, router.resolve);
+    });
+    const link = isExternal.value ? void 0 : useBuiltinLink == null ? void 0 : useBuiltinLink({ ...props, to });
+    const href = computed(() => {
+      var _a;
+      if (!to.value || isAbsoluteUrl.value) {
+        return to.value;
+      }
+      if (isExternal.value) {
+        const path = typeof to.value === "object" && "path" in to.value ? resolveRouteObject(to.value) : to.value;
+        const href2 = typeof path === "object" ? router.resolve(path).href : path;
+        return resolveTrailingSlashBehavior(
+          href2,
+          router.resolve
+          /* will not be called */
+        );
+      }
+      if (typeof to.value === "object") {
+        return ((_a = router.resolve(to.value)) == null ? void 0 : _a.href) ?? null;
+      }
+      return resolveTrailingSlashBehavior(
+        joinURL(config.app.baseURL, to.value),
+        router.resolve
+        /* will not be called */
+      );
+    });
+    return {
+      to,
+      hasTarget,
+      isAbsoluteUrl,
+      isExternal,
+      //
+      href,
+      isActive: (link == null ? void 0 : link.isActive) ?? computed(() => to.value === router.currentRoute.value.path),
+      isExactActive: (link == null ? void 0 : link.isExactActive) ?? computed(() => to.value === router.currentRoute.value.path),
+      route: (link == null ? void 0 : link.route) ?? computed(() => router.resolve(to.value)),
+      async navigate() {
+        await navigateTo(href.value, { replace: props.replace, external: isExternal.value || hasTarget.value });
+      }
+    };
+  }
+  return defineComponent({
+    name: componentName,
+    props: {
+      // Routing
+      to: {
+        type: [String, Object],
+        default: void 0,
+        required: false
+      },
+      href: {
+        type: [String, Object],
+        default: void 0,
+        required: false
+      },
+      // Attributes
+      target: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      rel: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      noRel: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      },
+      // Prefetching
+      prefetch: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      },
+      prefetchOn: {
+        type: [String, Object],
+        default: void 0,
+        required: false
+      },
+      noPrefetch: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      },
+      // Styling
+      activeClass: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      exactActiveClass: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      prefetchedClass: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      // Vue Router's `<RouterLink>` additional props
+      replace: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      },
+      ariaCurrentValue: {
+        type: String,
+        default: void 0,
+        required: false
+      },
+      // Edge cases handling
+      external: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      },
+      // Slot API
+      custom: {
+        type: Boolean,
+        default: void 0,
+        required: false
+      }
+    },
+    useLink: useNuxtLink,
+    setup(props, { slots }) {
+      const router = useRouter();
+      const { to, href, navigate, isExternal, hasTarget, isAbsoluteUrl } = useNuxtLink(props);
+      const prefetched = ref(false);
+      const el = void 0;
+      const elRef = void 0;
+      function shouldPrefetch(mode) {
+        var _a, _b;
+        return !prefetched.value && (typeof props.prefetchOn === "string" ? props.prefetchOn === mode : ((_a = props.prefetchOn) == null ? void 0 : _a[mode]) ?? ((_b = options.prefetchOn) == null ? void 0 : _b[mode])) && (props.prefetch ?? options.prefetch) !== false && props.noPrefetch !== true && props.target !== "_blank" && !isSlowConnection();
+      }
+      async function prefetch(nuxtApp = useNuxtApp()) {
+        if (prefetched.value) {
+          return;
+        }
+        prefetched.value = true;
+        const path = typeof to.value === "string" ? to.value : isExternal.value ? resolveRouteObject(to.value) : router.resolve(to.value).fullPath;
+        await Promise.all([
+          nuxtApp.hooks.callHook("link:prefetch", path).catch(() => {
+          }),
+          !isExternal.value && !hasTarget.value && preloadRouteComponents(to.value, router).catch(() => {
+          })
+        ]);
+      }
+      return () => {
+        var _a;
+        if (!isExternal.value && !hasTarget.value) {
+          const routerLinkProps = {
+            ref: elRef,
+            to: to.value,
+            activeClass: props.activeClass || options.activeClass,
+            exactActiveClass: props.exactActiveClass || options.exactActiveClass,
+            replace: props.replace,
+            ariaCurrentValue: props.ariaCurrentValue,
+            custom: props.custom,
+            onPointerenter: shouldPrefetch("interaction") ? prefetch.bind(null, void 0) : void 0,
+            onFocus: shouldPrefetch("interaction") ? prefetch.bind(null, void 0) : void 0
+          };
+          if (!props.custom) {
+            if (prefetched.value) {
+              routerLinkProps.class = props.prefetchedClass || options.prefetchedClass;
+            }
+            routerLinkProps.rel = props.rel || void 0;
+          }
+          return h(
+            resolveComponent("RouterLink"),
+            routerLinkProps,
+            slots.default
+          );
+        }
+        const target = props.target || null;
+        const rel = firstNonUndefined(
+          // converts `""` to `null` to prevent the attribute from being added as empty (`rel=""`)
+          props.noRel ? "" : props.rel,
+          options.externalRelAttribute,
+          /*
+          * A fallback rel of `noopener noreferrer` is applied for external links or links that open in a new tab.
+          * This solves a reverse tabnapping security flaw in browsers pre-2021 as well as improving privacy.
+          */
+          isAbsoluteUrl.value || hasTarget.value ? "noopener noreferrer" : ""
+        ) || null;
+        if (props.custom) {
+          if (!slots.default) {
+            return null;
+          }
+          return slots.default({
+            href: href.value,
+            navigate,
+            get route() {
+              if (!href.value) {
+                return void 0;
+              }
+              const url = new URL(href.value, "http://localhost");
+              return {
+                path: url.pathname,
+                fullPath: url.pathname,
+                get query() {
+                  return parseQuery(url.search);
+                },
+                hash: url.hash,
+                params: {},
+                name: void 0,
+                matched: [],
+                redirectedFrom: void 0,
+                meta: {},
+                href: href.value
+              };
+            },
+            rel,
+            target,
+            isExternal: isExternal.value || hasTarget.value,
+            isActive: false,
+            isExactActive: false
+          });
+        }
+        return h("a", { ref: el, href: href.value || null, rel, target }, (_a = slots.default) == null ? void 0 : _a.call(slots));
+      };
+    }
+  });
+}
+const __nuxt_component_0$1 = /* @__PURE__ */ defineNuxtLink(nuxtLinkDefaults);
+function applyTrailingSlashBehavior(to, trailingSlash) {
+  const normalizeFn = trailingSlash === "append" ? withTrailingSlash : withoutTrailingSlash;
+  const hasProtocolDifferentFromHttp = hasProtocol(to) && !to.startsWith("http");
+  if (hasProtocolDifferentFromHttp) {
+    return to;
+  }
+  return normalizeFn(to, true);
+}
+function isSlowConnection() {
+  {
+    return;
+  }
+}
 const inlineConfig = {
   "nuxt": {},
   "icon": {
@@ -1203,7 +1515,7 @@ const revive_payload_server_eJ33V7gbc6 = /* @__PURE__ */ defineNuxtPlugin({
     }
   }
 });
-const LazyIcon = defineAsyncComponent(() => import("./_nuxt/index-CPt6RJet.js").then((r) => r["default"] || r.default || r));
+const LazyIcon = defineAsyncComponent(() => import("./_nuxt/index-Dw5aD4jo.js").then((r) => r["default"] || r.default || r));
 const lazyGlobalComponents = [
   ["Icon", LazyIcon]
 ];
@@ -1304,7 +1616,7 @@ const plugins = [
   prerender_server_LXx1wM9sKF
 ];
 const layouts = {
-  default: () => import("./_nuxt/default-DUii-jo2.js").then((m) => m.default || m)
+  default: () => import("./_nuxt/default-OoYuvD1r.js").then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1579,39 +1891,106 @@ _sfc_main$2.setup = (props, ctx) => {
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
 const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender]]);
-const _sfc_main$1 = {
-  __name: "nuxt-error-page",
+const _imports_0 = publicAssetsURL("/liver.webp");
+const _imports_1 = publicAssetsURL("/pulmon.webp");
+const _imports_2 = publicAssetsURL("/kidneys.webp");
+const _imports_3 = "" + __buildAssetsURL("logo.DjfCBo3g.webp");
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "error",
   __ssrInlineRender: true,
   props: {
-    error: Object
+    error: {
+      type: Object,
+      default: null
+    }
   },
   setup(__props) {
     const props = __props;
-    const _error = props.error;
-    _error.stack ? _error.stack.split("\n").splice(1).map((line) => {
-      const text = line.replace("webpack:/", "").replace(".vue", ".js").trim();
-      return {
-        text,
-        internal: line.includes("node_modules") && !line.includes(".cache") || line.includes("internal") || line.includes("new Promise")
-      };
-    }).map((i) => `<span class="stack${i.internal ? " internal" : ""}">${i.text}</span>`).join("\n") : "";
-    const statusCode = Number(_error.statusCode || 500);
-    const is404 = statusCode === 404;
-    const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
-    const description = _error.message || _error.toString();
-    const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import("./_nuxt/error-404-0sW5O7dn.js").then((r) => r.default || r));
-    const _Error = defineAsyncComponent(() => import("./_nuxt/error-500-BrR63sxk.js").then((r) => r.default || r));
-    const ErrorTemplate = is404 ? _Error404 : _Error;
+    const is404 = computed(() => {
+      var _a, _b;
+      return ((_a = props.error) == null ? void 0 : _a.statusCode) === 404 || !((_b = props.error) == null ? void 0 : _b.statusCode);
+    });
+    const quickLinks = [
+      { label: "Inicio", href: "/#inicio" },
+      { label: "Servicios", href: "/#servicios" },
+      { label: "Preguntas frecuentes", href: "/#preguntas" },
+      { label: "Contacto", href: "/#contacto" }
+    ];
+    useHead({
+      title: is404.value ? "Página no encontrada — Dra. Yissel Mendoza" : "Error — Dra. Yissel Mendoza",
+      meta: [
+        { name: "robots", content: "noindex, nofollow" }
+      ]
+    });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
+      var _a;
+      const _component_NuxtLink = __nuxt_component_0$1;
+      _push(`<div${ssrRenderAttrs(mergeProps({
+        class: "min-h-screen flex flex-col items-center justify-center relative overflow-hidden",
+        style: { "background": "linear-gradient(145deg, #f0f6fe 0%, #eef4fb 55%, #f5fbf8 100%)" }
+      }, _attrs))}><div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/8 blur-[100px] pointer-events-none"></div><div class="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] rounded-full bg-accent/8 blur-[100px] pointer-events-none"></div><img${ssrRenderAttr("src", _imports_0)} class="absolute top-8 right-12 w-20 opacity-10 select-none pointer-events-none" alt="" aria-hidden="true"><img${ssrRenderAttr("src", _imports_1)} class="absolute bottom-16 left-10 w-24 opacity-10 select-none pointer-events-none" alt="" aria-hidden="true"><img${ssrRenderAttr("src", _imports_2)} class="absolute top-1/2 right-6 w-16 opacity-10 select-none pointer-events-none" alt="" aria-hidden="true"><div class="relative z-10 text-center px-6 max-w-lg">`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        to: "/",
+        class: "inline-block mb-10"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<img${ssrRenderAttr("src", _imports_3)} alt="Dra. Yissel Mendoza" class="h-14 w-auto mx-auto"${_scopeId}>`);
+          } else {
+            return [
+              createVNode("img", {
+                src: _imports_3,
+                alt: "Dra. Yissel Mendoza",
+                class: "h-14 w-auto mx-auto"
+              })
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`<div class="mb-4"><span class="text-8xl font-display font-black text-transparent bg-clip-text" style="${ssrRenderStyle({ "background-image": "linear-gradient(135deg, #132f57 0%, #1a6fa0 55%, #2ebd85 100%)" })}">${ssrInterpolate(is404.value ? "404" : ((_a = __props.error) == null ? void 0 : _a.statusCode) ?? "500")}</span></div><h1 class="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-3">${ssrInterpolate(is404.value ? "Página no encontrada" : "Algo salió mal")}</h1><p class="text-slate-500 mb-10 leading-relaxed">${ssrInterpolate(is404.value ? "La página que buscas no existe o fue movida. Puedes volver al inicio o agendar tu cita directamente." : "Ocurrió un error inesperado. Por favor intenta de nuevo o contáctanos directamente.")}</p><div class="flex flex-col sm:flex-row gap-3 justify-center">`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        to: "/",
+        class: "inline-flex items-center justify-center px-7 py-3.5 rounded-full font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl",
+        style: { "background": "linear-gradient(135deg, #132f57 0%, #1a6fa0 55%, #2ebd85 100%)" }
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"${_scopeId}><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"${_scopeId}></path></svg> Volver al inicio `);
+          } else {
+            return [
+              (openBlock(), createBlock("svg", {
+                class: "w-4 h-4 mr-2",
+                fill: "none",
+                stroke: "currentColor",
+                viewBox: "0 0 24 24",
+                "aria-hidden": "true"
+              }, [
+                createVNode("path", {
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round",
+                  "stroke-width": "2",
+                  d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                })
+              ])),
+              createTextVNode(" Volver al inicio ")
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`<a href="tel:4494970240" class="inline-flex items-center justify-center px-7 py-3.5 rounded-full font-semibold text-slate-700 border-2 border-slate-200 bg-white hover:bg-slate-50 transition-all hover:-translate-y-0.5"><svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> 449-497-02-40 </a></div><div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2"><!--[-->`);
+      ssrRenderList(quickLinks, (link) => {
+        _push(`<a${ssrRenderAttr("href", link.href)} class="text-sm text-slate-400 hover:text-primary transition-colors">${ssrInterpolate(link.label)}</a>`);
+      });
+      _push(`<!--]--></div></div><p class="absolute bottom-6 text-xs text-slate-400"> © ${ssrInterpolate((/* @__PURE__ */ new Date()).getFullYear())} Dra. Yissel Mendoza González — Médico Internista en Aguascalientes </p></div>`);
     };
   }
-};
+});
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt/dist/app/components/nuxt-error-page.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("error.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const _sfc_main = {
@@ -1682,18 +2061,17 @@ let entry;
 }
 const entry_default = (ssrContext) => entry(ssrContext);
 export {
-  _export_sfc as _,
-  useNuxtApp as a,
-  useRuntimeConfig as b,
-  nuxtLinkDefaults as c,
-  asyncDataDefaults as d,
+  _imports_0 as _,
+  _imports_1 as a,
+  _imports_2 as b,
+  __nuxt_component_0$1 as c,
+  _imports_3 as d,
   entry_default as default,
-  createError as e,
-  useAppConfig as f,
-  resolveUnrefHeadInput as g,
-  injectHead as i,
-  navigateTo as n,
-  resolveRouteObject as r,
-  useRouter as u
+  useNuxtApp as e,
+  asyncDataDefaults as f,
+  createError as g,
+  useAppConfig as h,
+  useRuntimeConfig as i,
+  useHead as u
 };
 //# sourceMappingURL=server.mjs.map

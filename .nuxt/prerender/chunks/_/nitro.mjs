@@ -798,7 +798,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "c6887cf2-ebc9-4f0a-95da-f9ad5d54d7e2",
+    "buildId": "fea7c73e-85b2-428f-8260-14582bb2f52e",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -817,7 +817,7 @@ const _inlineRuntimeConfig = {
         "headers": {
           "Content-Type": "text/xml; charset=UTF-8",
           "Cache-Control": "public, max-age=600, must-revalidate",
-          "X-Sitemap-Prerendered": "2026-02-23T19:14:48.013Z"
+          "X-Sitemap-Prerendered": "2026-03-06T16:26:10.146Z"
         }
       },
       "/_nuxt/builds/meta/**": {
@@ -880,7 +880,7 @@ const _inlineRuntimeConfig = {
         "defaults": {
           "changefreq": "monthly",
           "priority": 0.9,
-          "lastmod": "2026-02-23T19:14:47.043Z"
+          "lastmod": "2026-03-06T16:26:09.496Z"
         },
         "include": [],
         "exclude": [
@@ -910,7 +910,10 @@ const _inlineRuntimeConfig = {
       {
         "_priority": -3,
         "_context": "nuxt-site-config:config",
-        "url": "https://internistaenaguascalientes.com"
+        "url": "https://internistaenaguascalientes.com",
+        "name": "Dra. Yissel Mendoza — Médico Internista en Aguascalientes",
+        "description": "Médico Internista certificada en Aguascalientes. Especialista en diabetes, hipertensión, enfermedades crónicas del adulto.",
+        "defaultLocale": "es-MX"
       }
     ],
     "version": "2.2.21",
@@ -926,15 +929,21 @@ const _inlineRuntimeConfig = {
         "userAgent": [
           "*"
         ],
-        "disallow": [
-          ""
+        "allow": [
+          "/"
         ],
-        "allow": [],
+        "disallow": [],
         "_indexable": true,
-        "_rules": []
+        "_rules": [
+          {
+            "pattern": "/",
+            "allow": true
+          }
+        ]
       }
     ],
     "sitemap": [
+      "https://internistaenaguascalientes.com/sitemap.xml",
       "/sitemap.xml"
     ],
     "header": true,
@@ -952,15 +961,21 @@ const _inlineRuntimeConfig = {
         "userAgent": [
           "*"
         ],
-        "disallow": [
-          ""
+        "allow": [
+          "/"
         ],
-        "allow": [],
+        "disallow": [],
         "_indexable": true,
-        "_rules": []
+        "_rules": [
+          {
+            "pattern": "/",
+            "allow": true
+          }
+        ]
       }
     ],
     "sitemap": [
+      "https://internistaenaguascalientes.com/sitemap.xml",
       "/sitemap.xml"
     ],
     "header": true,
@@ -2065,47 +2080,47 @@ _q77tc23oo_BAgNx8LZoBIRga4ov68Ou5dYtrVHp0W4
 ];
 
 const assets = {
+  "/_payload.json": {
+    "type": "application/json",
+    "etag": "\"45-MSnpBE1gk0K3HzEa+Uy8/mpbUiE\"",
+    "mtime": "2026-03-06T16:26:17.666Z",
+    "size": 69,
+    "path": "../../.output/public/_payload.json"
+  },
+  "/robots.txt": {
+    "type": "text/plain; charset=utf-8",
+    "etag": "\"85-GLVxZDppV7yn1GtpX1+gkff5s+s\"",
+    "mtime": "2026-03-06T16:26:17.648Z",
+    "size": 133,
+    "path": "../../.output/public/robots.txt"
+  },
   "/200.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"19d68-rtsj9pcMYKcZQ+CNbJ+NIAFNZNI\"",
-    "mtime": "2026-02-23T19:15:04.138Z",
-    "size": 105832,
+    "etag": "\"1a61b-oI/0Ydke/2HxtwYkufg+dw7q8PY\"",
+    "mtime": "2026-03-06T16:26:17.649Z",
+    "size": 108059,
     "path": "../../.output/public/200.html"
   },
   "/404.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"19d2d-8RaaS/iUHTlI4EgrtbOoC3XQxD4\"",
-    "mtime": "2026-02-23T19:15:04.138Z",
-    "size": 105773,
+    "etag": "\"1a5e0-pfnJO0hQtsbEkMmKV/aDboYgSdQ\"",
+    "mtime": "2026-03-06T16:26:17.649Z",
+    "size": 108000,
     "path": "../../.output/public/404.html"
-  },
-  "/robots.txt": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"87-0XPpVH8kRz/r2s6j4eO55lETvmM\"",
-    "mtime": "2026-02-23T19:15:04.138Z",
-    "size": 135,
-    "path": "../../.output/public/robots.txt"
-  },
-  "/_payload.json": {
-    "type": "application/json",
-    "etag": "\"45-dj4D4FOSp+zVo5/Qm6NxoY/cL9A\"",
-    "mtime": "2026-02-23T19:15:04.243Z",
-    "size": 69,
-    "path": "../../.output/public/_payload.json"
-  },
-  "/index.html": {
-    "type": "text/html; charset=utf-8",
-    "etag": "\"322fd-jpCHrj6ZrCmoLbGkbhp/VqA8E+s\"",
-    "mtime": "2026-02-23T19:15:04.226Z",
-    "size": 205565,
-    "path": "../../.output/public/index.html"
   },
   "/__sitemap__/style.xsl": {
     "type": "application/xml",
-    "etag": "\"1750-JZu2Lgmrwm+sVk06nuKrGm3AfUc\"",
-    "mtime": "2026-02-23T19:15:04.136Z",
-    "size": 5968,
+    "etag": "\"1782-GxB7355TZipDLGUjYlflM4c9Adw\"",
+    "mtime": "2026-03-06T16:26:17.633Z",
+    "size": 6018,
     "path": "../../.output/public/__sitemap__/style.xsl"
+  },
+  "/index.html": {
+    "type": "text/html; charset=utf-8",
+    "etag": "\"33531-G/QAJq56sdvwKLloPd417qk14I0\"",
+    "mtime": "2026-03-06T16:26:17.661Z",
+    "size": 210225,
+    "path": "../../.output/public/index.html"
   }
 };
 

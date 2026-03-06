@@ -41,11 +41,24 @@ useHead({
         '@type': 'Physician',
         '@id': 'https://internistaenaguascalientes.com/#physician',
         name: 'Dra. Rosalba Yissel Mendoza González',
-        alternateName: 'Dra. Yissel Mendoza',
-        image: 'https://internistaenaguascalientes.com/social-share-cover.jpg',
+        givenName: 'Rosalba Yissel',
+        familyName: 'Mendoza González',
+        honorificPrefix: 'Dra.',
+        alternateName: ['Dra. Yissel Mendoza', 'Dra. Yissel Mendoza González', 'Internista Aguascalientes'],
+        image: [
+          'https://internistaenaguascalientes.com/social-share-cover.jpg',
+          'https://internistaenaguascalientes.com/acerca-de.webp',
+        ],
+        datePublished: '2024-01-01',
+        dateModified: '2026-02-23',
+        alumniOf: [
+          { '@type': 'CollegeOrUniversity', name: 'Universidad de Guadalajara', '@id': 'https://www.wikidata.org/wiki/Q3028163' },
+          { '@type': 'Hospital', name: 'Centro Médico Nacional de Occidente IMSS', '@id': 'https://www.wikidata.org/wiki/Q4937718' },
+        ],
         sameAs: [
           'https://www.instagram.com/dra.mendozainternista/',
           'https://www.cmmi.org.mx',
+          'https://www.wikidata.org/wiki/Q81938',
         ],
         description: 'Médico Internista certificada en Aguascalientes, especializada en diabetes, hipertensión, enfermedades crónicas del adulto, valoración preoperatoria y diagnóstico de patologías complejas. Ofrece consulta presencial en Hospital MAC SUR y consulta virtual por videollamada.',
         medicalSpecialty: 'Medicina Interna',
@@ -113,12 +126,19 @@ useHead({
         '@id': 'https://internistaenaguascalientes.com/#website',
         url: 'https://internistaenaguascalientes.com',
         name: 'Dra. Yissel Mendoza — Médico Internista en Aguascalientes',
-        description: 'Sitio oficial de la Dra. Rosalba Yissel Mendoza González, Médico Internista certificada en Aguascalientes.',
+        description: 'Sitio oficial de la Dra. Rosalba Yissel Mendoza González, Médico Internista certificada en Aguascalientes. Especialista en diabetes, hipertensión, valoración peroperatoria y enfermedades crónicas del adulto.',
         inLanguage: 'es-MX',
         publisher: { '@id': 'https://internistaenaguascalientes.com/#physician' },
+        potentialAction: [
+          {
+            '@type': 'ReserveAction',
+            target: { '@type': 'EntryPoint', urlTemplate: 'tel:+524494970240' },
+            result: { '@type': 'Reservation', name: 'Cita de Medicina Interna — Dra. Yissel Mendoza Aguascalientes' },
+          },
+        ],
         speakable: {
           '@type': 'SpeakableSpecification',
-          cssSelector: ['h1', 'h2', '.hero-text p', '#preguntas']
+          cssSelector: ['h1', 'h2', '.hero-text p', '#preguntas', '#acerca', '#servicios']
         }
       })
     },
@@ -283,7 +303,10 @@ useHead({
         isPartOf: { '@id': 'https://internistaenaguascalientes.com/#website' },
         about: { '@id': 'https://internistaenaguascalientes.com/#physician' },
         lastReviewed: '2026-02-23',
+        datePublished: '2024-01-01',
+        dateModified: '2026-02-23',
         reviewedBy: { '@id': 'https://internistaenaguascalientes.com/#physician' },
+        breadcrumb: { '@id': 'https://internistaenaguascalientes.com/#breadcrumb' },
         medicalAudience: {
           '@type': 'MedicalAudience',
           audienceType: 'Patient',
@@ -291,7 +314,23 @@ useHead({
         },
         specialty: 'Medicina Interna'
       })
-    }
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        '@id': 'https://internistaenaguascalientes.com/#breadcrumb',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Médico Internista en Aguascalientes — Dra. Yissel Mendoza',
+            item: 'https://internistaenaguascalientes.com/',
+          },
+        ],
+      })
+    },
   ]
 })
 </script>
